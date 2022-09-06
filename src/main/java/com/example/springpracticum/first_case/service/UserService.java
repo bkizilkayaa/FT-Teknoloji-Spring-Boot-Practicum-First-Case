@@ -1,10 +1,12 @@
 package com.example.springpracticum.first_case.service;
 
 import com.example.springpracticum.first_case.exception.UserNotFoundException;
+import com.example.springpracticum.first_case.model.ProductComment;
 import com.example.springpracticum.first_case.model.User;
 import com.example.springpracticum.first_case.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -25,5 +27,9 @@ public class UserService {
     public List<String> getUserComments(int user_id) {
          findUserById(user_id);
          return productCommentService.getUserComments(user_id);
+    }
+
+    public List<ProductComment> productSearchBetweenDates(Date startDate, Date endDate, int user_id) {
+        return productCommentService.getCommentsForGivenUser(startDate,endDate,user_id);
     }
 }

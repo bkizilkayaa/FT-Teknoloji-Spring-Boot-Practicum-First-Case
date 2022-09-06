@@ -6,8 +6,6 @@ import com.example.springpracticum.first_case.model.ProductComment;
 import com.example.springpracticum.first_case.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -45,48 +43,28 @@ public class ProductService {
 
     public List<Product> getProductsWhichIsExpired() {
         try {
-            return productRepository.getProductsWhichIsExpired(getCurrentDateWithFormatted());
+            Date dt=new Date();
+            return productRepository.getProductsWhichIsExpired(dt);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
     public List<Product> getProductsWhichIsNotExpired() {
         try {
-            return productRepository.getProductsWhichIsNotExpired(getCurrentDateWithFormatted());
+            Date dt=new Date();
+            return productRepository.getProductsWhichIsNotExpired(dt);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
-    //şuanki tarih saat bilgisinin database'deki tarih saatformatına dönüştürülmesi.
-    //formats current date same as database
-    private Date getCurrentDateWithFormatted(){
-        try {        Date time=new Date();
-            SimpleDateFormat format=new SimpleDateFormat(("yyyy-MM-dd HH:mm:ss.SSSSSS"));
-            Date temp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSSSSS")
-                    .parse(format.format(time));
-            return temp;
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    private Date getCurrentDateWithFormatted(Date date){
-        try {
-            SimpleDateFormat format=new SimpleDateFormat(("yyyy-MM-dd HH:mm:ss.SSSSSS"));
-            Date temp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSSSSS")
-                    .parse(format.format(date));
-            return temp;
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public List<ProductComment> productSearchBetweenDates(Date minDate, Date maxDate, int product_id) {
+    public List<ProductComment> productSearchBetweenDates(Date startDate, Date endDate, int product_id) {
         return productCommentService.
                 productSearchBetweenDates(
-                        getCurrentDateWithFormatted(minDate),
-                        getCurrentDateWithFormatted(maxDate),
+                        startDate,
+                        endDate,
                         product_id);
     }
+
+
 }

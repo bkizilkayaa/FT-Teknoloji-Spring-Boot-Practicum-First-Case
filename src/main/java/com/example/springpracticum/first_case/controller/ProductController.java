@@ -6,6 +6,9 @@ import com.example.springpracticum.first_case.service.ProductService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -49,20 +52,29 @@ public class ProductController {
 
     @GetMapping("/{product_id}/search")
     public List<String> productSearch(
-                         @RequestParam(value="minDate",required = false) Date minDate,
-                         @RequestParam(value="maxDate",required = false) Date maxDate,
+                         @RequestParam(value="startDate",required = false) String startDate,
+                         @RequestParam(value="endDate",required = false) String endDate,
                          @PathVariable int product_id) {
             List<String> searchResult=new ArrayList<>();
             productService.findProductById(product_id);
 
-            productService.productSearchBetweenDates(minDate,maxDate,product_id)
+            productService.productSearchBetweenDates(
+                    parseStringToDates(startDate),
+                            parseStringToDates(endDate),
+                                product_id)
                     .forEach(i->searchResult.add(i.getComment()));
 
             return searchResult;
-
-
-
-
     }
 
+    private Date parseStringToDates(String string_date){
+        try {
+            DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            Date date;
+            date = formatter.parse(string_date);
+            return date;
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

@@ -26,6 +26,7 @@ public class Product {
     @Column(name = "price")
     private double price;
 
+    @Temporal(TemporalType.DATE)
     private Date expireDate;
 
     @JsonIgnore

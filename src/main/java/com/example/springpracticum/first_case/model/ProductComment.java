@@ -21,6 +21,7 @@ public class ProductComment {
     @Column(length = 500)
     private String comment;
 
+    @Temporal(TemporalType.DATE)
     private Date commentDate;
 
 

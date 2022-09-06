@@ -38,7 +38,15 @@ public class ProductCommentService {
         return commentList;
     }
 
-    public List<ProductComment> productSearchBetweenDates(Date minDate, Date maxDate, int product_id) {
-        return productCommentRepository.productSearchBetweenDates(minDate,maxDate,product_id);
+    public List<ProductComment> productSearchBetweenDates(Date startDate, Date endDate, int product_id) {
+        return productCommentRepository.productSearchBetweenDates(startDate,endDate,product_id);
+    }
+
+    public List<ProductComment> getAllComments() {
+        return productCommentRepository.findAll();
+    }
+
+    public List<ProductComment> getCommentsForGivenUser(Date startDate, Date endDate, int user_id) {
+        return productCommentRepository.getCommentsForGivenUser(startDate,endDate,user_id);
     }
 }
