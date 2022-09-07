@@ -20,6 +20,8 @@
 + localhost:8080/products/available
 ```
 ### Lists products that are not expired. (Including null dates!)
+<img src="images/img1.png" width="602" height= "373"/>
+
 </br></br>
 
 
@@ -29,6 +31,8 @@
 + localhost:8080/products/expired
 ```
 ### Lists products that are expired.
+<img src="images/img2.png"/>
+
 </br></br>
 
 
@@ -39,6 +43,8 @@
 ```
 ### List of comments for a given product within a given date range. Has 2 query parameters.
 #### params : startDate 2020-01-01 endDate 2024-01-01
+<img src="images/img3.png"/>
+
 </br> </br>
 
 
@@ -49,6 +55,8 @@
 ```
 ### List of comments for a given user within a given date range
 #### params : startDate 2020-01-01 endDate 2024-01-01
+<img src="images/img4.png"/>
+
 </br> </br>
 
 
@@ -58,6 +66,8 @@
 + localhost:8080/products/1/comments
 ```
 ### List of comments for a given product
+<img src="images/img5.png"/>
+
 </br> </br>
 
 
@@ -67,6 +77,8 @@
 + http://localhost:8080/users/2/comments
 ```
 ### List of comments for a given user
+<img src="images/img6.png"/>
+
 </br>
 
 
